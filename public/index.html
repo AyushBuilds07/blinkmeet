@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>BlinkMeet — Sign in</title>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
+<link rel="shortcut icon" href="/favicon.ico"/>
+<link rel="apple-touch-icon" href="/apple-touch-icon.png"/>
+<link rel="stylesheet" href="/css/style.css"/>
+<script src="/js/theme.js"></script>
+</head>
+<body>
+<div class="auth-page fade-in">
+  <div class="auth-panel">
+    <div class="auth-logo">
+      <div class="auth-logo-icon">📹</div>
+      <span class="auth-logo-name">BlinkMeet</span>
+    </div>
+    <h1 class="auth-title" id="formTitle">Welcome back</h1>
+    <p class="auth-subtitle" id="formSubtitle">Sign in to your account to continue.</p>
+
+    <div id="nicknameField" style="display:none">
+      <div class="form-group">
+        <label class="form-label">Nickname (display name)</label>
+        <input type="text" id="nickname" placeholder="e.g. Rohit Kumar" autocomplete="nickname"/>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Username</label>
+      <input type="text" id="username" placeholder="e.g. rohit_99" autocomplete="username" required/>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Password</label>
+      <input type="password" id="password" placeholder="Enter your password" autocomplete="current-password" required/>
+    </div>
+
+    <button class="btn btn-primary btn-full" id="submitBtn" style="margin-top:8px">Sign in</button>
+
+    <div class="error-msg" id="errorMsg"></div>
+
+    <div class="auth-divider">or</div>
+
+    <p class="auth-switch">
+      <span id="switchText">Don't have an account?</span>
+      <a id="switchMode" href="#">Create one</a>
+    </p>
+  </div>
+</div>
+<script src="/js/auth.js"></script>
+</body>
+</html>

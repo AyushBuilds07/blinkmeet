@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>BlinkMeet — Home</title>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
+<link rel="shortcut icon" href="/favicon.ico"/>
+<link rel="stylesheet" href="/css/style.css"/>
+<link rel="stylesheet" href="/css/study.css"/>
+<link rel="stylesheet" href="/css/games.css"/>
+<script src="/js/theme.js"></script>
+</head>
+<body>
+<div class="app-shell">
+  <button class="hamburger-btn" id="hamburgerBtn" aria-label="Open menu">☰</button>
+  <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+
+  <div class="sidebar">
+    <div class="brand">
+      <div class="brand-logo">📹</div>
+      <span class="brand-name">BlinkMeet</span>
+      <button class="sidebar-close-btn" id="sidebarCloseBtn">✕</button>
+    </div>
+    <p class="nav-section-label">Main</p>
+    <div class="nav-item active"><span class="nav-icon">⌂</span> Home</div>
+    <div class="nav-item" id="meetingsNav"><span class="nav-icon">📹</span> Meetings</div>
+    <p class="nav-section-label">Rooms</p>
+    <div class="nav-item" id="gameRoomsNav"><span class="nav-icon">🎮</span> Game Rooms</div>
+    <div class="nav-item" id="studyRoomsNav"><span class="nav-icon">📚</span> Study Rooms</div>
+    <p class="nav-section-label">History</p>
+    <div class="nav-item" id="historyNav"><span class="nav-icon">↺</span> Recent Rooms</div>
+    <div class="sidebar-bottom">
+      <div class="nav-item" id="settingsNav"><span class="nav-icon">⚙</span> Settings</div>
+      <div class="sidebar-user" id="sidebarUser">
+        <div class="sidebar-user-avatar" id="sidebarAvatar">—</div>
+        <div class="sidebar-user-info">
+          <div class="sidebar-user-name" id="sidebarName">—</div>
+          <div class="sidebar-user-status">● Online</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="main-content">
+    <div class="topbar">
+      <div>
+        <div class="topbar-title" id="greetTitle">Good morning 👋</div>
+        <div class="topbar-subtitle" id="greetSub">Ready to connect?</div>
+      </div>
+      <div class="topbar-actions">
+        <button class="btn btn-primary" id="newMeetingBtn">+ New Meeting</button>
+      </div>
+    </div>
+
+    <div class="page-content">
+      <!-- Quick Actions -->
+      <p class="section-title">Quick Actions</p>
+      <div class="quick-cards stagger">
+        <div class="quick-card blue" id="qcNewMeeting">
+          <div class="qc-icon">📹</div>
+          <div class="qc-title">New Meeting</div>
+          <div class="qc-desc">Start an instant video call</div>
+          <div class="qc-arrow">→</div>
+        </div>
+        <div class="quick-card purple" id="qcJoinRoom">
+          <div class="qc-icon">🔗</div>
+          <div class="qc-title">Join Room</div>
+          <div class="qc-desc">Enter with a room code</div>
+          <div class="qc-arrow">→</div>
+        </div>
+        <div class="quick-card" style="--accent:#7C3AED" id="qcGameRooms">
+          <div class="qc-icon">🎮</div>
+          <div class="qc-title">Game Rooms</div>
+          <div class="qc-desc">Ludo, UNO, and more</div>
+          <div class="qc-arrow">→</div>
+        </div>
+        <div class="quick-card green" id="qcStudyRooms">
+          <div class="qc-icon">📚</div>
+          <div class="qc-title">Study Rooms</div>
+          <div class="qc-desc">DSA, Java, C discussions</div>
+          <div class="qc-arrow">→</div>
+        </div>
+      </div>
+
+      <!-- Join by code -->
+      <div id="joinCodeBox" class="card" style="display:none;margin-bottom:24px;">
+        <p class="section-title" style="margin-bottom:12px;">Enter Room Code</p>
+        <form id="joinCodeForm" style="display:flex;gap:10px;">
+          <input type="text" id="joinCodeInput" placeholder="e.g. AB3XY9"
+            style="flex:1;font-family:var(--mono);letter-spacing:.1em;text-transform:uppercase;font-size:18px;height:48px"/>
+          <button type="submit" class="btn btn-primary" style="height:48px">Join</button>
+          <button type="button" class="btn btn-ghost" id="cancelJoin" style="height:48px">Cancel</button>
+        </form>
+      </div>
+
+      <!-- Recent Calls -->
+      <p class="section-title">Recent Calls</p>
+      <div class="recent-list" id="recentList">
+        <div class="card" style="text-align:center;padding:32px">
+          <div style="font-size:32px;margin-bottom:8px">📞</div>
+          <div style="color:var(--text2);font-size:13px">Loading recent calls…</div>
+        </div>
+      </div>
+
+      <!-- Meetings Section -->
+      <div class="rooms-banner" id="meetingsSection" style="margin-top:24px;border-color:rgba(37,99,235,0.3)">
+        <div class="rooms-banner-header">
+          <div>
+            <div class="rooms-banner-title">📹 Meetings</div>
+            <div class="rooms-banner-desc">Create a meeting link and share it with friends — they can join with one tap.</div>
+          </div>
+          <button class="btn btn-primary btn-sm" id="createMeetingLinkBtn">+ Create Meeting Link</button>
+        </div>
+      </div>
+
+      <!-- Study Rooms Banner -->
+      <div class="rooms-banner study-rooms-banner" style="margin-top:24px">
+        <div class="rooms-banner-header">
+          <div>
+            <div class="rooms-banner-title">📚 Study Rooms</div>
+            <div class="rooms-banner-desc">Placement prep with peers — 150 DSA questions, Java & C rooms</div>
+          </div>
+          <a href="/study-rooms.html" class="btn btn-ghost btn-sm">Browse →</a>
+        </div>
+        <div class="rooms-mini-grid">
+          <a href="/study-rooms.html" class="rooms-mini-card">
+            <span class="rmc-icon">🧩</span>
+            <span class="rmc-label">DSA</span>
+            <span class="rmc-sub">150 questions</span>
+          </a>
+          <a href="/study-rooms.html" class="rooms-mini-card">
+            <span class="rmc-icon">☕</span>
+            <span class="rmc-label">Java</span>
+            <span class="rmc-sub">100 questions</span>
+          </a>
+          <a href="/study-rooms.html" class="rooms-mini-card">
+            <span class="rmc-icon">⚙️</span>
+            <span class="rmc-label">C</span>
+            <span class="rmc-sub">50 questions</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Game Rooms Banner -->
+      <div class="rooms-banner" style="border-color:rgba(124,58,237,0.3)">
+        <div class="rooms-banner-header">
+          <div>
+            <div class="rooms-banner-title">🎮 Game Rooms</div>
+            <div class="rooms-banner-desc">Private rooms — Ludo, UNO, Draw & Guess, Truth or Dare and more</div>
+          </div>
+          <a href="/game-rooms.html" class="btn btn-ghost btn-sm">Browse →</a>
+        </div>
+        <div class="rooms-mini-grid">
+          <a href="/game-rooms.html" class="rooms-mini-card">
+            <span class="rmc-icon">🎲</span>
+            <span class="rmc-label">Ludo</span>
+            <span class="rmc-sub">2–4 players</span>
+          </a>
+          <a href="/game-rooms.html" class="rooms-mini-card">
+            <span class="rmc-icon">🃏</span>
+            <span class="rmc-label">UNO</span>
+            <span class="rmc-sub">2–8 players</span>
+          </a>
+          <a href="/game-rooms.html" class="rooms-mini-card">
+            <span class="rmc-icon">🎨</span>
+            <span class="rmc-label">Draw</span>
+            <span class="rmc-sub">2–8 players</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile bottom nav -->
+  <div class="bottom-nav">
+    <div class="bottom-nav-item active" onclick="location.href='/home.html'">
+      <span class="bn-icon">⌂</span>Home
+    </div>
+    <div class="bottom-nav-item" onclick="location.href='/game-rooms.html'">
+      <span class="bn-icon">🎮</span>Games
+    </div>
+    <div class="bottom-nav-item" onclick="location.href='/study-rooms.html'">
+      <span class="bn-icon">📚</span>Study
+    </div>
+    <div class="bottom-nav-item" onclick="location.href='/history.html'">
+      <span class="bn-icon">↺</span>History
+    </div>
+    <div class="bottom-nav-item" onclick="location.href='/settings.html'">
+      <span class="bn-icon">⚙</span>Settings
+    </div>
+  </div>
+</div>
+
+<!-- Meeting Link Share Modal -->
+<div class="modal-overlay" id="meetingLinkModal">
+  <div class="modal">
+    <button class="modal-close" id="meetingLinkModalClose">✕</button>
+    <div class="modal-title">📹 Meeting link created!</div>
+    <p class="modal-subtitle">Share this link with anyone — they can join instantly, no account needed.</p>
+
+    <div class="form-group">
+      <label class="form-label">Meeting Link</label>
+      <div style="display:flex;gap:8px">
+        <input type="text" id="meetingLinkInput" readonly style="flex:1;font-family:var(--mono);font-size:13px"/>
+        <button class="btn btn-secondary btn-sm" id="copyMeetingLinkBtn" style="white-space:nowrap">Copy</button>
+      </div>
+      <p class="toast-msg" id="copyLinkToast">Link copied!</p>
+    </div>
+
+    <p class="form-label" style="margin-top:18px;margin-bottom:10px">Share via</p>
+    <div style="display:flex;gap:10px;flex-wrap:wrap">
+      <a id="shareWhatsapp" target="_blank" rel="noopener" class="btn btn-secondary" style="flex:1;background:#22C55E;color:#fff;min-width:100px">💬 WhatsApp</a>
+      <a id="shareEmail" class="btn btn-secondary" style="flex:1;background:#2563EB;color:#fff;min-width:100px">✉️ Email</a>
+      <a id="shareSMS" class="btn btn-secondary" style="flex:1;background:#7C3AED;color:#fff;min-width:100px">💬 SMS</a>
+    </div>
+
+    <button class="btn btn-primary btn-full" id="joinCreatedMeetingBtn" style="margin-top:20px">Join Meeting Now →</button>
+  </div>
+</div>
+
+<script src="/js/nav.js"></script>
+<script src="/js/home.js"></script>
+</body>
+</html>

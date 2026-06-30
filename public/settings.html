@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>BlinkMeet — Settings</title>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
+<link rel="stylesheet" href="/css/style.css"/>
+<script src="/js/theme.js"></script>
+</head>
+<body>
+<div class="app-shell">
+  <button class="hamburger-btn" id="hamburgerBtn">☰</button>
+  <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+  <div class="sidebar">
+    <div class="brand"><div class="brand-logo">📹</div><span class="brand-name">BlinkMeet</span><button class="sidebar-close-btn" id="sidebarCloseBtn">✕</button></div>
+    <p class="nav-section-label">Main</p>
+    <div class="nav-item" id="homeNav"><span class="nav-icon">⌂</span> Home</div>
+    <div class="nav-item" id="meetingsNav"><span class="nav-icon">📹</span> Meetings</div>
+    <p class="nav-section-label">Rooms</p>
+    <div class="nav-item" id="gameRoomsNav"><span class="nav-icon">🎮</span> Game Rooms</div>
+    <div class="nav-item" id="studyRoomsNav"><span class="nav-icon">📚</span> Study Rooms</div>
+    <p class="nav-section-label">History</p>
+    <div class="nav-item" id="historyNav"><span class="nav-icon">↺</span> Recent Rooms</div>
+    <div class="sidebar-bottom">
+      <div class="nav-item active"><span class="nav-icon">⚙</span> Settings</div>
+      <div class="sidebar-user"><div class="sidebar-user-avatar" id="sidebarAvatar">—</div><div class="sidebar-user-info"><div class="sidebar-user-name" id="sidebarName">—</div><div class="sidebar-user-status">● Online</div></div></div>
+    </div>
+  </div>
+  <div class="main-content">
+    <div class="topbar"><div><div class="topbar-title">Settings</div><div class="topbar-subtitle">Manage your account and preferences</div></div></div>
+    <div class="page-content" style="max-width:640px">
+
+      <!-- Profile -->
+      <div class="card settings-section">
+        <h2>Profile</h2>
+        <p>Your display name and profile photo visible to others.</p>
+        <div class="photo-row">
+          <div class="photo-preview" id="photoPreview">—</div>
+          <div class="photo-actions">
+            <label class="upload-label" for="photoInput">📷 Upload Photo</label>
+            <input type="file" id="photoInput" accept="image/*"/>
+            <button class="btn btn-ghost btn-sm" id="removePhotoBtn">Remove</button>
+          </div>
+        </div>
+        <p class="toast-msg" id="photoToast">Photo updated!</p>
+        <div class="settings-row">
+          <div class="settings-row-label">
+            <h3>Nickname</h3>
+            <p id="usernameHint">@—</p>
+          </div>
+          <div style="display:flex;gap:8px;align-items:center">
+            <input type="text" id="nicknameInput" placeholder="Your display name" style="width:200px"/>
+            <button class="btn btn-primary btn-sm" id="saveNicknameBtn">Save</button>
+          </div>
+        </div>
+        <p class="toast-msg" id="nickToast">Nickname saved!</p>
+      </div>
+
+      <!-- Appearance -->
+      <div class="card settings-section">
+        <h2>Appearance</h2>
+        <p>Choose your preferred theme.</p>
+        <div class="settings-row">
+          <div class="settings-row-label"><h3>Theme</h3><p>Light or dark interface</p></div>
+          <div class="theme-toggle">
+            <button id="themeDark" class="active">🌙 Dark</button>
+            <button id="themeLight">☀️ Light</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Blocked -->
+      <div class="card settings-section">
+        <h2>Blocked Users</h2>
+        <p>Users you have blocked will appear here.</p>
+        <div id="blockedList"><p style="color:var(--text2);font-size:13px">No blocked users.</p></div>
+      </div>
+
+      <!-- Danger -->
+      <div class="card settings-section">
+        <h2>Data</h2>
+        <p>Manage your call history and account.</p>
+        <div class="settings-row">
+          <div class="settings-row-label"><h3>Clear Call History</h3><p>Permanently delete all call records</p></div>
+          <button class="btn btn-danger btn-sm" id="clearHistoryBtn">Clear History</button>
+        </div>
+        <div class="settings-row">
+          <div class="settings-row-label"><h3>Sign Out</h3><p>Sign out of your account</p></div>
+          <button class="btn btn-ghost btn-sm" id="logoutBtn">Sign out</button>
+        </div>
+        <p class="toast-msg" id="dangerToast"></p>
+      </div>
+    </div>
+  </div>
+  <div class="bottom-nav">
+    <div class="bottom-nav-item" onclick="location.href='/home.html'"><span class="bn-icon">⌂</span>Home</div>
+    <div class="bottom-nav-item" onclick="location.href='/game-rooms.html'"><span class="bn-icon">🎮</span>Games</div>
+    <div class="bottom-nav-item" onclick="location.href='/study-rooms.html'"><span class="bn-icon">📚</span>Study</div>
+    <div class="bottom-nav-item" onclick="location.href='/history.html'"><span class="bn-icon">↺</span>History</div>
+    <div class="bottom-nav-item active"><span class="bn-icon">⚙</span>Settings</div>
+  </div>
+</div>
+<script src="/js/nav.js"></script>
+<script src="/js/settings.js"></script>
+</body>
+</html>

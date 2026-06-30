@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>BlinkMeet — Game Room</title>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
+<link rel="stylesheet" href="/css/style.css"/>
+<link rel="stylesheet" href="/css/games.css"/>
+</head>
+<body>
+<div class="game-shell">
+  <div class="game-topbar">
+    <div class="game-topbar-left">
+      <span class="game-title-badge" id="topbarGame">Game</span>
+      <div class="room-code-pill">
+        CODE: <span class="code-val" id="topbarCode">—</span>
+        <button style="background:none;border:none;color:var(--text2);cursor:pointer;font-size:13px;margin-left:4px" id="copyCodeBtn" title="Copy code">📋</button>
+      </div>
+    </div>
+    <div class="game-topbar-right">
+      <button class="btn btn-ghost btn-sm" id="chatToggleBtn">💬 Chat</button>
+      <button class="btn btn-danger btn-sm" id="leaveBtn">Leave</button>
+    </div>
+  </div>
+
+  <!-- Winner overlay -->
+  <div class="winner-overlay" id="winnerOverlay">
+    <div class="winner-box">
+      <div class="winner-emoji" id="winnerEmoji">🏆</div>
+      <div class="winner-title" id="winnerTitle">Winner!</div>
+      <div class="winner-names" id="winnerNames">—</div>
+      <div class="winner-btns">
+        <button class="btn btn-primary" id="playAgainBtn" style="display:none">Play Again</button>
+        <button class="btn btn-ghost" id="newGameBtn">Leave Room</button>
+      </div>
+    </div>
+    <div id="confettiContainer"></div>
+  </div>
+
+  <!-- UNO color picker -->
+  <div class="color-picker-overlay hidden" id="colorPicker">
+    <div class="color-picker-box">
+      <p>Choose a color</p>
+      <div class="cp-row">
+        <button class="cp-btn" style="background:#dc2626" data-color="red" title="Red"></button>
+        <button class="cp-btn" style="background:#2563eb" data-color="blue" title="Blue"></button>
+        <button class="cp-btn" style="background:#16a34a" data-color="green" title="Green"></button>
+        <button class="cp-btn" style="background:#d97706" data-color="yellow" title="Yellow"></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Lobby -->
+  <div class="game-lobby" id="lobbyScreen">
+    <div class="lobby-game-icon" id="lobbyIcon">🎲</div>
+    <div class="lobby-title" id="lobbyTitle">Game Room</div>
+    <div class="lobby-subtitle" id="lobbySubtitle">Waiting for players…</div>
+    <div class="reaction-bar" style="margin-bottom:20px">
+      <button class="reaction-btn" data-emoji="👍">👍</button>
+      <button class="reaction-btn" data-emoji="🔥">🔥</button>
+      <button class="reaction-btn" data-emoji="😂">😂</button>
+      <button class="reaction-btn" data-emoji="❤️">❤️</button>
+      <button class="reaction-btn" data-emoji="🎉">🎉</button>
+      <button class="reaction-btn" data-emoji="💀">💀</button>
+    </div>
+    <div class="player-grid" id="playerGrid"></div>
+    <button class="start-game-btn" id="startBtn" disabled>Start Game</button>
+    <p class="start-hint" id="startHint"></p>
+  </div>
+
+  <!-- Game area -->
+  <div class="game-layout" id="gameLayout">
+    <div class="game-area" id="gameArea"></div>
+    <div class="game-chat-col hidden" id="chatCol">
+      <div style="padding:14px 16px;border-bottom:1px solid var(--border);font-size:14px;font-weight:700">In-game Chat</div>
+      <div class="gr-chat-log" id="chatLog"></div>
+      <form class="gr-chat-form" id="chatForm">
+        <input type="text" id="chatInput" placeholder="Message…" autocomplete="off"/>
+        <button type="submit">↵</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/games/ludo.js"></script>
+<script src="/js/games/uno.js"></script>
+<script src="/js/games/tictactoe.js"></script>
+<script src="/js/games/skribbl.js"></script>
+<script src="/js/games/tod.js"></script>
+<script src="/js/games/nhie.js"></script>
+<script src="/js/game-room.js"></script>
+</body>
+</html>

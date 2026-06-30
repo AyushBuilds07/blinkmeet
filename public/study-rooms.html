@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>BlinkMeet — Study Rooms</title>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
+<link rel="stylesheet" href="/css/style.css"/>
+<link rel="stylesheet" href="/css/study.css"/>
+<script src="/js/theme.js"></script>
+</head>
+<body>
+<div class="app-shell">
+  <button class="hamburger-btn" id="hamburgerBtn">☰</button>
+  <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+  <div class="sidebar">
+    <div class="brand"><div class="brand-logo">📹</div><span class="brand-name">BlinkMeet</span><button class="sidebar-close-btn" id="sidebarCloseBtn">✕</button></div>
+    <p class="nav-section-label">Main</p>
+    <div class="nav-item" id="homeNav"><span class="nav-icon">⌂</span> Home</div>
+    <div class="nav-item" id="meetingsNav"><span class="nav-icon">📹</span> Meetings</div>
+    <p class="nav-section-label">Rooms</p>
+    <div class="nav-item" id="gameRoomsNav"><span class="nav-icon">🎮</span> Game Rooms</div>
+    <div class="nav-item active"><span class="nav-icon">📚</span> Study Rooms</div>
+    <p class="nav-section-label">History</p>
+    <div class="nav-item" id="historyNav"><span class="nav-icon">↺</span> Recent Rooms</div>
+    <div class="sidebar-bottom">
+      <div class="nav-item" id="settingsNav"><span class="nav-icon">⚙</span> Settings</div>
+      <div class="sidebar-user"><div class="sidebar-user-avatar" id="sidebarAvatar">—</div><div class="sidebar-user-info"><div class="sidebar-user-name" id="sidebarName">—</div><div class="sidebar-user-status">● Online</div></div></div>
+    </div>
+  </div>
+  <div class="main-content">
+    <div class="topbar"><div><div class="topbar-title">Study Rooms</div><div class="topbar-subtitle">Placement prep — DSA, Java, C Programming</div></div></div>
+    <div class="page-content">
+
+      <!-- Join by code -->
+      <div class="join-code-box card" style="margin-bottom:24px">
+        <p class="section-title" style="margin-bottom:4px">Have a room code?</p>
+        <p style="font-size:12px;color:var(--text2);margin-bottom:12px">Room codes rotate every 15 seconds — enter quickly!</p>
+        <form class="join-code-form" id="joinCodeForm">
+          <input type="text" id="joinCodeInput" placeholder="Enter room code" maxlength="8" autocomplete="off"/>
+          <button type="submit" class="btn btn-primary">Join Room</button>
+        </form>
+        <div class="error-msg" id="joinError"></div>
+      </div>
+
+      <!-- Categories -->
+      <p class="section-title">Choose a Category</p>
+      <div class="study-cat-grid stagger">
+        <div class="study-cat-card dsa">
+          <div class="scc-icon">🧩</div>
+          <div class="scc-title">DSA Room</div>
+          <div class="scc-desc">150 algorithm problems across Arrays, Strings & Recursion. Complete problem statements — no external links needed.</div>
+          <div class="scc-tags"><span class="scc-tag">3 Rounds</span><span class="scc-tag">150 Questions</span><span class="scc-tag">In-app Problems</span></div>
+          <div class="scc-buttons">
+            <button class="btn btn-primary" data-cat="dsa" data-action="host">Host Room</button>
+            <button class="btn btn-ghost" data-cat="dsa" data-action="join">Join Room</button>
+          </div>
+        </div>
+        <div class="study-cat-card java">
+          <div class="scc-icon">☕</div>
+          <div class="scc-title">Java Room</div>
+          <div class="scc-desc">100 placement-oriented Java questions — OOP, Collections, Streams, Concurrency, Spring & Modern Java (21).</div>
+          <div class="scc-tags"><span class="scc-tag">100 Questions</span><span class="scc-tag">Placement Focus</span><span class="scc-tag">Java 21</span></div>
+          <div class="scc-buttons">
+            <button class="btn btn-primary" data-cat="java" data-action="host">Host Room</button>
+            <button class="btn btn-ghost" data-cat="java" data-action="join">Join Room</button>
+          </div>
+        </div>
+        <div class="study-cat-card c">
+          <div class="scc-icon">⚙️</div>
+          <div class="scc-title">C Programming Room</div>
+          <div class="scc-desc">50 essential C interview questions — Pointers, Memory Management, Data Structures & Algorithms.</div>
+          <div class="scc-tags"><span class="scc-tag">50 Questions</span><span class="scc-tag">Systems</span><span class="scc-tag">Pointers</span></div>
+          <div class="scc-buttons">
+            <button class="btn btn-primary" data-cat="c" data-action="host">Host Room</button>
+            <button class="btn btn-ghost" data-cat="c" data-action="join">Join Room</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Live rooms -->
+      <p class="section-title" style="margin-top:8px">Live Study Rooms</p>
+      <div class="live-rooms-list" id="liveRoomsList">
+        <div class="card" style="text-align:center;padding:28px;color:var(--text2)">No rooms active right now. Be the first to host one!</div>
+      </div>
+    </div>
+  </div>
+  <div class="bottom-nav">
+    <div class="bottom-nav-item" onclick="location.href='/home.html'"><span class="bn-icon">⌂</span>Home</div>
+    <div class="bottom-nav-item" onclick="location.href='/game-rooms.html'"><span class="bn-icon">🎮</span>Games</div>
+    <div class="bottom-nav-item active"><span class="bn-icon">📚</span>Study</div>
+    <div class="bottom-nav-item" onclick="location.href='/history.html'"><span class="bn-icon">↺</span>History</div>
+    <div class="bottom-nav-item" onclick="location.href='/settings.html'"><span class="bn-icon">⚙</span>Settings</div>
+  </div>
+</div>
+
+<!-- Host Modal -->
+<div class="modal-overlay" id="hostModal">
+  <div class="modal">
+    <button class="modal-close" id="hostModalClose">✕</button>
+    <div class="modal-title" id="hostModalTitle">Host DSA Room</div>
+    <p class="modal-subtitle">You'll be the host. You control question navigation.</p>
+    <div class="form-group">
+      <label class="form-label">Room Name (optional)</label>
+      <input type="text" id="hostRoomName" placeholder="e.g. Evening DSA session" maxlength="50"/>
+    </div>
+    <button class="btn btn-primary btn-full" id="startHostBtn" style="margin-top:4px">Create Room</button>
+    <div class="error-msg" id="hostError"></div>
+  </div>
+</div>
+
+<!-- Join Modal -->
+<div class="modal-overlay" id="joinModal">
+  <div class="modal">
+    <button class="modal-close" id="joinModalClose">✕</button>
+    <div class="modal-title" id="joinModalTitle">Join DSA Room</div>
+    <p class="modal-subtitle">Enter the room code shared by the host.</p>
+    <div class="form-group">
+      <label class="form-label">Room Code</label>
+      <input type="text" id="joinModalCode" placeholder="e.g. A3B9X" maxlength="8" autocomplete="off" style="letter-spacing:.1em;text-transform:uppercase;font-family:var(--mono)"/>
+    </div>
+    <button class="btn btn-primary btn-full" id="doJoinBtn" style="margin-top:4px">Join Room</button>
+    <div class="error-msg" id="joinModalError"></div>
+  </div>
+</div>
+
+<script src="/js/nav.js"></script>
+<script src="/js/study-lobby.js"></script>
+</body>
+</html>

@@ -1,0 +1,6 @@
+node_modules/
+blinkmeet.db
+blinkmeet.db-wal
+blinkmeet.db-shm
+.env
+*.log

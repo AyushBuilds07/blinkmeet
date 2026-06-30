@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>BlinkMeet — Contacts</title>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
+<link rel="stylesheet" href="/css/style.css"/>
+<script src="/js/theme.js"></script>
+</head>
+<body>
+<div class="app-shell">
+  <button class="hamburger-btn" id="hamburgerBtn">☰</button>
+  <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+  <div class="sidebar">
+    <div class="brand"><div class="brand-logo">📹</div><span class="brand-name">BlinkMeet</span><button class="sidebar-close-btn" id="sidebarCloseBtn">✕</button></div>
+    <p class="nav-section-label">Main</p>
+    <div class="nav-item" id="homeNav"><span class="nav-icon">⌂</span> Home</div>
+    <div class="nav-item" id="meetingsNav"><span class="nav-icon">📹</span> Meetings</div>
+    <p class="nav-section-label">Rooms</p>
+    <div class="nav-item" id="gameRoomsNav"><span class="nav-icon">🎮</span> Game Rooms</div>
+    <div class="nav-item" id="studyRoomsNav"><span class="nav-icon">📚</span> Study Rooms</div>
+    <p class="nav-section-label">History</p>
+    <div class="nav-item" id="historyNav"><span class="nav-icon">↺</span> Recent Rooms</div>
+    <div class="sidebar-bottom">
+      <div class="nav-item" id="settingsNav"><span class="nav-icon">⚙</span> Settings</div>
+      <div class="sidebar-user"><div class="sidebar-user-avatar" id="sidebarAvatar">—</div><div class="sidebar-user-info"><div class="sidebar-user-name" id="sidebarName">—</div><div class="sidebar-user-status">● Online</div></div></div>
+    </div>
+  </div>
+  <div class="main-content">
+    <div class="topbar"><div><div class="topbar-title">Contacts</div><div class="topbar-subtitle">Manage your BlinkMeet contacts</div></div></div>
+    <div class="page-content">
+      <div class="card" style="margin-bottom:20px">
+        <p class="section-title" style="margin-bottom:12px">Add Contact</p>
+        <form id="addContactForm" style="display:flex;gap:10px">
+          <input type="text" id="contactUsername" placeholder="Enter username" style="flex:1"/>
+          <button type="submit" class="btn btn-primary">Add</button>
+        </form>
+        <div class="error-msg" id="addContactError"></div>
+        <p class="toast-msg" id="addContactToast">Contact added!</p>
+      </div>
+      <p class="section-title">Your Contacts</p>
+      <div class="contact-grid" id="contactsList"><div style="text-align:center;padding:40px;color:var(--text2)">Loading…</div></div>
+    </div>
+  </div>
+</div>
+<script src="/js/nav.js"></script>
+<script src="/js/contacts.js"></script>
+</body>
+</html>

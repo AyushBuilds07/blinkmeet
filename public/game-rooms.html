@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>BlinkMeet — Game Rooms</title>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
+<link rel="stylesheet" href="/css/style.css"/>
+<link rel="stylesheet" href="/css/games.css"/>
+<script src="/js/theme.js"></script>
+</head>
+<body>
+<div class="app-shell">
+  <button class="hamburger-btn" id="hamburgerBtn">☰</button>
+  <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+  <div class="sidebar">
+    <div class="brand"><div class="brand-logo">📹</div><span class="brand-name">BlinkMeet</span><button class="sidebar-close-btn" id="sidebarCloseBtn">✕</button></div>
+    <p class="nav-section-label">Main</p>
+    <div class="nav-item" id="homeNav"><span class="nav-icon">⌂</span> Home</div>
+    <div class="nav-item" id="meetingsNav"><span class="nav-icon">📹</span> Meetings</div>
+    <p class="nav-section-label">Rooms</p>
+    <div class="nav-item active"><span class="nav-icon">🎮</span> Game Rooms</div>
+    <div class="nav-item" id="studyRoomsNav"><span class="nav-icon">📚</span> Study Rooms</div>
+    <p class="nav-section-label">History</p>
+    <div class="nav-item" id="historyNav"><span class="nav-icon">↺</span> Recent Rooms</div>
+    <div class="sidebar-bottom">
+      <div class="nav-item" id="settingsNav"><span class="nav-icon">⚙</span> Settings</div>
+      <div class="sidebar-user"><div class="sidebar-user-avatar" id="sidebarAvatar">—</div><div class="sidebar-user-info"><div class="sidebar-user-name" id="sidebarName">—</div><div class="sidebar-user-status">● Online</div></div></div>
+    </div>
+  </div>
+  <div class="main-content">
+    <div class="topbar"><div><div class="topbar-title">Game Rooms</div><div class="topbar-subtitle">Private rooms — join only with a room code</div></div></div>
+    <div class="page-content">
+
+      <!-- Join by code -->
+      <div class="code-input-box card" style="margin-bottom:24px">
+        <p class="section-title" style="margin-bottom:4px">Have a room code?</p>
+        <p style="font-size:12px;color:var(--text2);margin-bottom:12px">All game rooms are private. Get the 6-character code from your friend.</p>
+        <form id="joinCodeForm">
+          <div class="code-input-row">
+            <input type="text" id="joinCodeInput" placeholder="ABC123" maxlength="6" autocomplete="off"/>
+            <button type="submit" class="btn btn-primary">Join Game</button>
+          </div>
+        </form>
+        <div class="error-msg" id="joinError"></div>
+      </div>
+
+      <p class="section-title">Create a Game Room</p>
+      <div class="game-grid stagger">
+        <div class="game-card gc-ludo">
+          <div class="gc-emoji">🎲</div>
+          <div class="gc-name">Ludo</div>
+          <div class="gc-desc">Classic board game — roll dice, move tokens, send opponents back to base.</div>
+          <div class="gc-meta"><span class="gc-chip">2–4 players</span><span class="gc-chip">Dice 🎲</span><span class="gc-chip">Strategy</span></div>
+          <button class="gc-host-btn" data-game="ludo">Host Ludo Room</button>
+        </div>
+        <div class="game-card gc-uno">
+          <div class="gc-emoji">🃏</div>
+          <div class="gc-name">UNO</div>
+          <div class="gc-desc">Match cards by color or number. Skip, Reverse, Draw Two, Wild & Wild Draw Four.</div>
+          <div class="gc-meta"><span class="gc-chip">2–8 players</span><span class="gc-chip">Cards 🃏</span><span class="gc-chip">Fast</span></div>
+          <button class="gc-host-btn" data-game="uno">Host UNO Room</button>
+        </div>
+        <div class="game-card gc-tictactoe">
+          <div class="gc-emoji">⭕</div>
+          <div class="gc-name">Tic-Tac-Toe</div>
+          <div class="gc-desc">Classic X vs O. Best of rounds with a live scoreboard tracking wins.</div>
+          <div class="gc-meta"><span class="gc-chip">2 players</span><span class="gc-chip">Quick ⚡</span><span class="gc-chip">Scoreboard</span></div>
+          <button class="gc-host-btn" data-game="tictactoe">Host TicTacToe</button>
+        </div>
+        <div class="game-card gc-skribbl">
+          <div class="gc-emoji">🎨</div>
+          <div class="gc-name">Draw &amp; Guess</div>
+          <div class="gc-desc">One player draws a word while others guess. Timer, scoring, and rotating artists.</div>
+          <div class="gc-meta"><span class="gc-chip">2–8 players</span><span class="gc-chip">Canvas 🖌️</span><span class="gc-chip">Creative</span></div>
+          <button class="gc-host-btn" data-game="skribbl">Host Draw Room</button>
+        </div>
+        <div class="game-card gc-tod">
+          <div class="gc-emoji">🎤</div>
+          <div class="gc-name">Truth or Dare</div>
+          <div class="gc-desc">Random truths and dares for everyone. Perfect for break time with friends.</div>
+          <div class="gc-meta"><span class="gc-chip">2–8 players</span><span class="gc-chip">Social 🎤</span><span class="gc-chip">Fun</span></div>
+          <button class="gc-host-btn" data-game="tod">Host T or D</button>
+        </div>
+        <div class="game-card gc-nhie">
+          <div class="gc-emoji">🙋</div>
+          <div class="gc-name">Never Have I Ever</div>
+          <div class="gc-desc">30 prompts, live voting — see who's done what. Great for getting to know each other.</div>
+          <div class="gc-meta"><span class="gc-chip">2–10 players</span><span class="gc-chip">Social 🙋</span><span class="gc-chip">Groups</span></div>
+          <button class="gc-host-btn" data-game="nhie">Host NHIE Room</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="bottom-nav">
+    <div class="bottom-nav-item" onclick="location.href='/home.html'"><span class="bn-icon">⌂</span>Home</div>
+    <div class="bottom-nav-item active"><span class="bn-icon">🎮</span>Games</div>
+    <div class="bottom-nav-item" onclick="location.href='/study-rooms.html'"><span class="bn-icon">📚</span>Study</div>
+    <div class="bottom-nav-item" onclick="location.href='/history.html'"><span class="bn-icon">↺</span>History</div>
+    <div class="bottom-nav-item" onclick="location.href='/settings.html'"><span class="bn-icon">⚙</span>Settings</div>
+  </div>
+</div>
+
+<!-- Create Modal -->
+<div class="modal-overlay" id="createModal">
+  <div class="modal">
+    <button class="modal-close" id="createModalClose">✕</button>
+    <div style="font-size:48px;margin-bottom:10px" id="modalIcon">🎲</div>
+    <div class="modal-title" id="modalTitle">Ludo</div>
+    <p class="modal-subtitle" id="modalRules"></p>
+    <button class="btn btn-primary btn-full" id="createRoomBtn">Create Room</button>
+    <div class="error-msg" id="createError"></div>
+  </div>
+</div>
+
+<script src="/js/nav.js"></script>
+<script src="/js/game-lobby.js"></script>
+</body>
+</html>

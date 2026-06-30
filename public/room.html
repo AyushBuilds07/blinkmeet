@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>BlinkMeet — Meeting</title>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
+<link rel="stylesheet" href="/css/style.css"/>
+</head>
+<body>
+<div class="call-shell">
+  <div class="call-topbar">
+    <div class="call-room-info">
+      <span class="call-live-dot"></span>
+      <span class="call-code mono" id="roomLabel">Meeting</span>
+      <button class="copy-code-btn" id="copyCodeBtn" title="Copy room code">Copy code</button>
+    </div>
+    <div style="display:flex;align-items:center;gap:8px">
+      <button class="btn btn-secondary btn-sm" id="inviteBtn">+ Invite</button>
+      <span style="font-size:12px;color:var(--text2);font-family:var(--mono)" id="participantCount">1 participant</span>
+    </div>
+  </div>
+
+  <div style="display:flex;flex:1;min-height:0">
+    <div class="video-grid" id="videoGrid">
+      <div style="text-align:center;padding:40px;color:var(--text2);font-size:13px;grid-column:1/-1" id="emptyNote">Waiting for others to join…</div>
+    </div>
+    <div class="call-chat-panel hidden" id="chatPanel">
+      <div class="chat-panel">
+        <div class="chat-header">Meeting Chat</div>
+        <div class="chat-log" id="chatLog"></div>
+        <form class="chat-form" id="chatForm">
+          <input type="text" id="chatInput" placeholder="Message…" autocomplete="off"/>
+          <button type="submit">↵</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="controls-dock">
+    <button class="ctrl-btn" id="micBtn" title="Mute/Unmute">🎙️</button>
+    <button class="ctrl-btn" id="camBtn" title="Camera on/off">📷</button>
+    <button class="ctrl-btn" id="shareBtn" title="Share screen">🖥️</button>
+    <button class="ctrl-btn" id="chatBtn" title="Chat">💬</button>
+    <button class="ctrl-btn leave-btn" id="leaveBtn">Leave</button>
+  </div>
+</div>
+
+<!-- Invite Modal -->
+<div class="modal-overlay" id="inviteModal">
+  <div class="modal">
+    <button class="modal-close" id="inviteModalClose">✕</button>
+    <div class="modal-title">📹 Invite to this meeting</div>
+    <p class="modal-subtitle">Share this link — anyone with it can join instantly.</p>
+    <div class="form-group">
+      <label class="form-label">Meeting Link</label>
+      <div style="display:flex;gap:8px">
+        <input type="text" id="inviteLinkInput" readonly style="flex:1;font-family:var(--mono);font-size:13px"/>
+        <button class="btn btn-secondary btn-sm" id="copyInviteLinkBtn" style="white-space:nowrap">Copy</button>
+      </div>
+      <p class="toast-msg" id="inviteCopyToast">Link copied!</p>
+    </div>
+    <p class="form-label" style="margin-top:18px;margin-bottom:10px">Share via</p>
+    <div style="display:flex;gap:10px;flex-wrap:wrap">
+      <a id="inviteWhatsapp" target="_blank" rel="noopener" class="btn btn-secondary" style="flex:1;background:#22C55E;color:#fff;min-width:100px">💬 WhatsApp</a>
+      <a id="inviteEmail" class="btn btn-secondary" style="flex:1;background:#2563EB;color:#fff;min-width:100px">✉️ Email</a>
+      <a id="inviteSMS" class="btn btn-secondary" style="flex:1;background:#7C3AED;color:#fff;min-width:100px">💬 SMS</a>
+    </div>
+  </div>
+</div>
+
+<!-- Waiting for host approval (shown to joiner) -->
+<div class="modal-overlay" id="waitingApprovalOverlay" style="z-index:250">
+  <div class="modal" style="text-align:center">
+    <div style="font-size:40px;margin-bottom:10px">⏳</div>
+    <div class="modal-title">Waiting for host to let you in…</div>
+    <p class="modal-subtitle">The host will admit you shortly.</p>
+  </div>
+</div>
+
+<!-- Join denied -->
+<div class="modal-overlay" id="joinDeniedOverlay" style="z-index:250">
+  <div class="modal" style="text-align:center">
+    <div style="font-size:40px;margin-bottom:10px">🚫</div>
+    <div class="modal-title">Access denied</div>
+    <p class="modal-subtitle">The host did not let you into this meeting.</p>
+    <button class="btn btn-primary btn-full" onclick="location.href='/home.html'">Back to Home</button>
+  </div>
+</div>
+
+<!-- Join requests panel (shown to host/co-host) -->
+<div id="joinRequestsPanel" style="display:none;position:fixed;top:70px;right:16px;width:280px;z-index:120;background:var(--card);border:1px solid var(--border);border-radius:var(--radius-lg);box-shadow:var(--shadow);overflow:hidden">
+  <div style="padding:12px 14px;border-bottom:1px solid var(--border);font-size:13px;font-weight:700;display:flex;justify-content:space-between;align-items:center">
+    <span>Waiting to join</span>
+    <span id="joinRequestsCount" class="badge badge-blue">0</span>
+  </div>
+  <div id="joinRequestsList" style="max-height:280px;overflow-y:auto"></div>
+</div>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/room.js"></script>
+</body>
+</html>
